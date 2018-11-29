@@ -13,6 +13,7 @@ describe('RequireIntercept', () => {
     let TestModule;
     let mockDependency;
     let mockAround;
+    let stopMocking;
     
     beforeEach(() => {
         requireIntercept = require('../src/RequireIntercept');
@@ -20,6 +21,7 @@ describe('RequireIntercept', () => {
         TestModule = testModuleIntercept.module;
         mockDependency = testModuleIntercept.mockDependency;
         mockAround = testModuleIntercept.mockAround;
+        stopMocking = testModuleIntercept.stopMocking;
     });
 
     afterEach(() => {
@@ -36,16 +38,20 @@ describe('RequireIntercept', () => {
         expect(testInstance.callDependency()).to.be.true;
     });
 
-    it('Should replace the module dependency with the mock', () => {
+    it('Should replace the module dependency with the mock and then stop', () => {
 
         const testInstance = new TestModule();
 
         mockDependency('./TestDependency', { "realDependency": false });
 
         expect(testInstance.callDependency()).to.be.false;
+
+        stopMocking('./TestDependency');
+
+        expect(testInstance.callDependency()).to.be.true;
     });
 
-    it('Should replace the module dependency with the mock', () => {
+    it('Should be able to mock within scopes', () => {
 
         const testInstance = new TestModule();
 
@@ -53,6 +59,20 @@ describe('RequireIntercept', () => {
 
         mockAround('./TestDependency', { "realDependency": false }, () => {
             expect(testInstance.callDependency()).to.be.false;
+        });
+
+        expect(testInstance.callDependency()).to.be.true;
+    });
+
+    it('Should be able to mock within async scopes', async () => {
+
+        const testInstance = new TestModule();
+
+        expect(testInstance.callDependency()).to.be.true;
+
+        await mockAround('./TestDependency', { "realDependency": false }, async () => {
+            const calledDependency = await testInstance.callDependencyAsync();
+            expect(calledDependency).to.be.false;
         });
 
         expect(testInstance.callDependency()).to.be.true;

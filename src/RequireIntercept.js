@@ -29,10 +29,17 @@ class RequireIntercept {
         mockMapping[path].setHoodwinkTarget(mock);
     }
 
-    mockAround(path, mock, body) {
+    async mockAround(path, mock, body) {
         mockMapping[path].setHoodwinkTarget(mock);
-        body(mock);
+        let out;
+        if (body[Symbol.toStringTag] === 'AsyncFunction') {
+            out = await body(mock);
+        } else {
+            out = body(mock);
+        }
         mockMapping[path].reset();
+        
+        return out;
     }
 
     stopMocking(path) {
