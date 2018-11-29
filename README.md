@@ -48,32 +48,33 @@ module.exports = {
 const requireIntercept = require('require-intercept');
 const { module: TestModule, mockDependency, stopMocking, mockAround } = requireIntercept('./TestModule');
 
-const module = new TestModule();
-console.log("Before any mocking it calls the real TestDependency >", module.callDependency();
+const testModule = new TestModule();
+console.log("Before any mocking it calls the real TestDependency >", testModule.getDependency());
 // Before any mocking it calls the real TestDependency > { "dependencyType": "Real" }
 
 const mock = { "dependencyType": "Mocked" };
 
 mockDependency('./TestDependency', mock);
 
-console.log("Once mocked we have injected the mock without modifying the code structure >", module.callDependency());
+console.log("Once mocked we have injected the mock without modifying the code structure >", testModule.getDependency());
 // Once mocked we have injected the mock without modifying the code structure > { "dependencyType": "Mocked" }
 
 stopMocking('./TestDependency');
 
-console.log("Once we have stopped mocking we restore the original module >", module.callDependency());
+console.log("Once we have stopped mocking we restore the original module >", testModule.getDependency());
 // Once we have stopped mocking we restore the original module > { "dependencyType": "Real" }
 
 mockAround('./TestDependency', mock, () => {
-    console.log("We can inject mocks within a particular scope >", module.callDependency());
+    console.log("We can inject mocks within a particular scope >", testModule.getDependency());
     // We can inject mocks within a particular scope > { "dependencyType": "Mocked" }
 });
 
-console.log("And they are automatically restored afterwards >", module.callDependency());
+console.log("And they are automatically restored afterwards >", testModule.getDependency());
 // And they are automatically restored afterwards > { "dependencyType": "Real" }
 
 mockAround('./TestDependency', mock, async () => {
-    console.log("This also works with async functions >", module.callDependency());
+    const value = await testModule.getDependencyAsync()
+    console.log("This also works with async functions >", value);
     // This also works with async functions > { "dependencyType": "Mocked" }
 });
 ```
