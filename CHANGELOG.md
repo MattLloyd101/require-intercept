@@ -1,5 +1,9 @@
 # Require Intercept - Changelog
 
+## 2018-11-29 Version 1.0.3
+
+* (bug fix) The first invocation must use the parent context so that RequireIntercept is transparent.
+
 ## 2018-11-29 Version 1.0.2
 
 * (bug fix) The mockMapping would previously retain references forever, now they are instance scoped.

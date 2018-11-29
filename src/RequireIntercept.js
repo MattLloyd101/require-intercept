@@ -35,8 +35,8 @@ class RequireIntercept {
     run() {
         const This = this;
         function requireOverride(requested) {
-            if (requested === This.path) {
-                return realRequire(requested);
+            if(requested === This.path) {
+                return realRequire.apply(this.parent, [requested]);
             }
 
             const realModule = realRequire.apply(this, [requested]);
