@@ -1,6 +1,6 @@
 # Require Intercept - Changelog
 
-## 2018-11-29 Version 1.0.1
+## 2018-11-29 Version 1.0.2
 
 * (bug fix) The mockMapping would previously retain references forever, now they are instance scoped.
 * (bug fix) The interceptor depending upon usage would have an incorrect reference to this.
