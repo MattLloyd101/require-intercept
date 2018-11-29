@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+- '8.10'
+deploy:
+  provider: npm
+  email: Matt.Lloyd101@gmail.com
+  api_key:
+    secure: n17MFSDKoDYYYK6ueNQNJMFCuLDvU4mGI5OMSYaxCH2loaIGWM4Y4aKkji9UxHAmzQY8KJl8zJ4Df/d2b7dM1QxXAPO7T33uIgnGJeL1sCi9xBxYPLPPDT2qQXKYZ7ZV/oOAyGurbm/Oz614X8gRq7v3xwMloJvlRLWXwnC6/VhMUsYeZr9IEJpRDZ+My2yA18N5qt/aUxHoN/vxed7/wEdO5XenMzjOdN4pWmAQGgSXrRyPcrP05vltaWw5EhRLWBDxsWyLz7AaCQM7Ky9vrzsnx4BP6BAdjKETB/e9wIht7x9pBujiT1svBbPZadfkZ8ckNLThlWlgIpSc8zyDOmTX5BfkCusof7YS0+zUaf+d9Sq8hMREnidhdB2QVV/kbVeEtG52+dZhnweHusRibRH2LX5BJMproc0TxmA4ogP4qd8zQVQCS9l3q54XDzXPz2qk5v4ncoShmEMwENwyDIZ35zjAU12f50OwpJYsqAbWef35PJSTy28ZA+LbQZnAeUixSQuXEUdphXsFYIFk2yXdN9QOzvbJGaZD+3CxRCo1hUWKaklB3SFS9kBbxdHi7iD5O6Ld1kBGq0edqPOwrlX8lZGXWeLYqYcFxYMmmVdN4va2jKWUED3WvtfQCxmK5p7R7G1Mk1HR1UyZJmE1WdsU9bw3QsIDZAsFbF3I+5E=
+  on:
+    tags: true
+    repo: MattLloyd101/require-intercept
