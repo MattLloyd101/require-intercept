@@ -2,6 +2,11 @@
 
 ## 2018-11-29 Version 1.0.1
 
+* (bug fix) The mockMapping would previously retain references forever, now they are instance scoped.
+* (bug fix) The interceptor depending upon usage would have an incorrect reference to this.
+
+## 2018-11-29 Version 1.0.1
+
 * (minor) Updated the README to have a working example...
 
 ## 2018-11-29 Version 1.0.0
