@@ -12,24 +12,30 @@ class RequireIntercept {
     }
 
     mockDependency(path, mock) {
-        this.mockMapping[path].setHoodwinkTarget(mock);
+        const target = this.mockMapping[path];
+
+        if(target !== undefined) target.setHoodwinkTarget(mock);
     }
 
     async mockAround(path, mock, body) {
-        this.mockMapping[path].setHoodwinkTarget(mock);
+        const target = this.mockMapping[path];
+
+        if(target !== undefined) target.setHoodwinkTarget(mock);
         let out;
         if (body[Symbol.toStringTag] === 'AsyncFunction') {
             out = await body(mock);
         } else {
             out = body(mock);
         }
-        this.mockMapping[path].reset();
+        if(target !== undefined) target.reset();
 
         return out;
     }
 
     stopMocking(path) {
-        this.mockMapping[path].reset();
+        const target = this.mockMapping[path];
+
+        if(target !== undefined) target.reset();
     }
 
     run() {

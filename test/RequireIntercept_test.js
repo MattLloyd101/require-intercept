@@ -77,4 +77,25 @@ describe('RequireIntercept', () => {
 
         expect(testInstance.callDependency()).to.be.true;
     });
+
+    it('Should not fail if the dependency does not exist', () => {
+
+        const testInstance = new TestModule();
+
+        expect(testInstance.callDependency()).to.be.true;
+
+        mockDependency('./DoesNotExist', { "realDependency": false });
+
+        expect(testInstance.callDependency()).to.be.true;
+
+        stopMocking('./DoesNotExist');
+
+        expect(testInstance.callDependency()).to.be.true;
+
+        mockAround('./DoesNotExist', { "realDependency": false }, () => {
+            expect(testInstance.callDependency()).to.be.true;
+        });
+
+        expect(testInstance.callDependency()).to.be.true;
+    });
 });
