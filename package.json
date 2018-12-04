@@ -1,6 +1,6 @@
 {
   "name": "require-intercept",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A way of intercepting required Node.js modules.",
   "main": "src/RequireIntercept.js",
   "scripts": {

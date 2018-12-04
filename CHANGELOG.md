@@ -1,5 +1,9 @@
 # Require Intercept - Changelog
 
+## 2018-12-04 Version 1.0.4
+
+* (bug fix) Ensuring if the mocked dependency doesn't exist that the library just acts like require.
+
 ## 2018-11-29 Version 1.0.3
 
 * (bug fix) The first invocation must use the parent context so that RequireIntercept is transparent.
