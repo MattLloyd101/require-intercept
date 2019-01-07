@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/MattLloyd101/require-intercept.svg?branch=master)](https://travis-ci.org/MattLloyd101/require-intercept)
 [![npm version](https://badge.fury.io/js/require-intercept.svg)](https://badge.fury.io/js/require-intercept)
+[![dependencies Status](https://david-dm.org/MattLloyd101/require-intercept/status.svg)](https://david-dm.org/MattLloyd101/require-intercept)
+[![devDependencies Status](https://david-dm.org/MattLloyd101/require-intercept/dev-status.svg)](https://david-dm.org/MattLloyd101/require-intercept?type=dev)
 
 A way of intercepting required Node.js module dependencies.
 
